@@ -21,7 +21,7 @@ const brandStyles = {
 
 const pageStyles = {
   color: "#232129",
-  padding: 48,
+  padding: "3%",
   fontFamily: "'Bebas Neue',display",
 }
 
@@ -42,7 +42,7 @@ export default function Layout(props: LayoutProps) {
   return <main style={pageStyles}>
     <Navbar style={navbarStyles}>
       <Navbar.Brand style={brandStyles}>
-        <Navbar.Item href="#">
+        <Navbar.Item href="/">
           Will's Photo Blog
         </Navbar.Item>
         <Navbar.Burger onClick={() => setIsActive(!isActive)} />

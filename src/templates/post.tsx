@@ -1,9 +1,11 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image"
-import { ImageList, ImageListItem } from "@mui/material"
-import ImageCover from "../components/imageCover"
+import Masonry from "react-masonry-css"
+import "./post.scss"
+
 
 type AlbumData = {
   wpPost: {
@@ -19,24 +21,51 @@ type AlbumData = {
         childImageSharp: {
           gatsbyImageData: ImageDataLike
         }
+        publicURL: string,
       }
     }[]
   }
 }
 
+const srlopts = {
+  settings: {
+    disableWheelControls: true,
+    autoplaySpeed: 0,
+    slideTransitionSpeed: 0.3,
+  }
+}
+
+const imageStyles = {
+  margin: "1%",
+}
+
+const breakpointColumnsObj = {
+  default: 3,
+  700: 2,
+  500: 1
+};
+
 export default function Album({ data }: PageProps<AlbumData>) {
   console.log(data)
   return <Layout title={data.wpPost.title}>
-    <ImageList variant="masonry" cols={2} gap={8}>
-      {data.allWpMediaItem.nodes.map((node) => {
-        const image = getImage(node.localFile.childImageSharp.gatsbyImageData)!
-          return (
-            <ImageListItem key={node.id}>
-              <ImageCover image={image} slug={"/"}/>
-            </ImageListItem>
-          )
-      })}
-    </ImageList>
+    <SimpleReactLightbox>
+      <SRLWrapper options={srlopts}>
+        <Masonry breakpointCols={breakpointColumnsObj} className="album-grid" columnClassName="album-grid-col">
+          {data.allWpMediaItem.nodes.map((node) => {
+            const image = getImage(node.localFile.childImageSharp.gatsbyImageData)!
+            return (
+              <a
+                href={node.localFile.publicURL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GatsbyImage image={image} alt={""} style={imageStyles} />
+              </a>
+            )
+          })}
+        </Masonry>
+      </SRLWrapper>
+    </SimpleReactLightbox>
   </Layout>
 }
 
@@ -53,6 +82,7 @@ export const query = graphql`
       nodes {
         id
         localFile {
+          publicURL
           childImageSharp {
             gatsbyImageData(
               placeholder: BLURRED
