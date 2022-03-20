@@ -1,0 +1,23 @@
+.mask {
+    background: linear-gradient(45deg, rgba(29, 236, 197, 0.5), rgba(91, 14, 214, 0.5) 100%);
+    transition: opacity 0.2s;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    &:hover {
+      opacity: 0.5;
+    }
+}
+
+.hover-box {
+    transform:scale(1, 1);
+    transition: 0.2s;
+
+    &:hover {
+        transform:scale(1.05);
+    }
+}

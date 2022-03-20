@@ -2,14 +2,20 @@
 module.exports = {
   siteMetadata: {
     title: ``,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://photo.aphoh.us`
   },
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": "https://booler:8002"
+      "url": "https://photo.aphoh.us/graphql",
     }
-  }, "gatsby-plugin-sass", "gatsby-plugin-image", "gatsby-plugin-sitemap", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
+  },
+    "gatsby-plugin-sass",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
