@@ -18,7 +18,7 @@ module.exports = {
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": "https://photo.aphoh.us/graphql",
+      "url": "https://wp-photo.aphoh.us/graphql",
       auth: wpAuth
     }
   },

@@ -34,7 +34,7 @@ export const query = graphql`
     wpPost(slug: {eq: $slug}){
       title
     }
-    allWpMediaItem(filter: {filename: {ne: null}, tags: {nodes: {elemMatch: {name: {eq: $imgtag}}}}}) {
+    allWpMediaItem(filter: {tags: {nodes: {elemMatch: {name: {eq: $imgtag}}}}}) {
       nodes {
         id
         caption

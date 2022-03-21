@@ -36,7 +36,7 @@ export default function Album({ data, pageContext }: PageProps<AlbumData, PageCo
 
 export const query = graphql`
   query($regex: String!) {
-    allWpMediaItem(filter: {filename: {ne: null}, caption: {regex: $regex}}) {
+    allWpMediaItem(filter: {caption: {regex: $regex}}) {
       nodes {
         id
         caption

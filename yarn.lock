@@ -5661,7 +5661,7 @@ gatsby-cli@^4.10.1:
     yoga-layout-prebuilt "^1.10.0"
     yurnalist "^2.1.0"
 
-gatsby-core-utils@^3.10.0, gatsby-core-utils@^3.8.2:
+gatsby-core-utils@^3.10.0, gatsby-core-utils@^3.8.2, gatsby-core-utils@^3.9.1:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-3.10.0.tgz#52be8a9a891d95686a7ee0c1cfef44f8e362232b"
   integrity sha512-yaRI/uUsbIggPRfh0y6CH+fy2AqbFFLxCYndw5nrVByEY40+KaKs0wOF4yIgPRBZZUHOyfBJ+1AGo2JLHdY5lA==
@@ -5744,7 +5744,7 @@ gatsby-parcel-config@^0.1.0:
     "@parcel/transformer-raw" "^2.3.1"
     "@parcel/transformer-react-refresh-wrap" "^2.3.1"
 
-gatsby-plugin-catch-links@^4.10.0:
+gatsby-plugin-catch-links@^4.9.0:
   version "4.10.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-4.10.0.tgz#1b5aae42d1b6285cdd489179ebfe59f4966344af"
   integrity sha512-VZz4EdpX1RRVOf8hmXk3nAycumLIgvBLMBdFQRAOfqOpD6XoDKMIOrEkmeMtBNam7wmhglFACDzpAgLomgFZAA==
@@ -5875,7 +5875,7 @@ gatsby-sharp@^0.4.0:
     "@types/sharp" "^0.29.5"
     sharp "^0.30.1"
 
-gatsby-source-filesystem@^4.10.0:
+gatsby-source-filesystem@^4.10.0, gatsby-source-filesystem@^4.9.1:
   version "4.10.0"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-4.10.0.tgz#d51041c01b0e905a426f8ad81494175e2f2a1109"
   integrity sha512-fRN7MFVnmxljVmZZCYswNNMdFygB0hfHmtTM6kdbBc8llkRPtr9tsvK6LHnWsxU2tzPHDTGvRORcSs/coT2v3A==
@@ -5893,10 +5893,10 @@ gatsby-source-filesystem@^4.10.0:
     valid-url "^1.0.9"
     xstate "^4.26.1"
 
-gatsby-source-wordpress@^6.10.1:
-  version "6.10.1"
-  resolved "https://registry.yarnpkg.com/gatsby-source-wordpress/-/gatsby-source-wordpress-6.10.1.tgz#9af18712dc78e5b3ed87507d65d1ab8ebdb8cbbe"
-  integrity sha512-NoKDsnK0HKSYNfg2WApooIQA6kNjwPX7gtRRCO4LetcptCLm5/ow2WyQPV1z5QI1wVhEt/amMj00VSDyTdXYfg==
+gatsby-source-wordpress@6.9.1:
+  version "6.9.1"
+  resolved "https://registry.yarnpkg.com/gatsby-source-wordpress/-/gatsby-source-wordpress-6.9.1.tgz#94e05d23dabc6e3216d9f7f6148e07447f94b5ba"
+  integrity sha512-4DpUniIi+os04QzK2MaZpZ+BB2BZOlKPJ/pNzoMF0fLCuuB4lJ4zXlvDtkIdLX2lv9PA1ZlwZjAzFbb04CY5mA==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@rematch/core" "^1.4.0"
@@ -5919,10 +5919,9 @@ gatsby-source-wordpress@^6.10.1:
     file-type "^15.0.1"
     filesize "^6.4.0"
     fs-extra "^10.0.0"
-    gatsby-core-utils "^3.10.0"
-    gatsby-plugin-catch-links "^4.10.0"
-    gatsby-plugin-utils "^3.4.1"
-    gatsby-source-filesystem "^4.10.0"
+    gatsby-core-utils "^3.9.1"
+    gatsby-plugin-catch-links "^4.9.0"
+    gatsby-source-filesystem "^4.9.1"
     glob "^7.2.0"
     got "^11.8.3"
     lodash "^4.17.21"
