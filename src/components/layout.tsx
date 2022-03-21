@@ -1,16 +1,11 @@
+import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import { Navbar } from "react-bulma-components"
-
-const tags = [
-  {
-    text: "Rollei 35",
-    id: "rollei-35",
-  }
-]
+import SimpleReactLightbox from "simple-react-lightbox"
 
 const navbarStyles = {
   marginTop: 0,
-  lineHeight: 1.2,
+  lineHeight: 1.0,
 
 }
 
@@ -20,7 +15,6 @@ const brandStyles = {
 
 
 const pageStyles = {
-  color: "#232129",
   padding: "3%",
   fontFamily: "'Bebas Neue',display",
 }
@@ -28,9 +22,22 @@ const pageStyles = {
 const headerStyles = {
   fontSize: "30px",
   lineHeight: 1.2,
-  marginTop: "1em",
+  marginTop: "0.2em",
   marginBottom: "0.2em",
   textAlign: 'center' as const,
+}
+
+const hrStyle = {
+  marginTop: 0
+}
+
+type TagQuery = {
+  allWpPage: {
+    nodes: {
+      title: string,
+      slug: string,
+    }[]
+  }
 }
 
 type LayoutProps = {
@@ -39,25 +46,42 @@ type LayoutProps = {
 }
 export default function Layout(props: LayoutProps) {
   const [isActive, setIsActive] = React.useState(false)
-  return <main style={pageStyles}>
-    <Navbar style={navbarStyles}>
-      <Navbar.Brand style={brandStyles}>
-        <Navbar.Item href="/">
-          Will's Photo Blog
-        </Navbar.Item>
-        <Navbar.Burger onClick={() => setIsActive(!isActive)} />
-      </Navbar.Brand>
-      <Navbar.Menu className={isActive ? "is-active" : ""}>
-        <Navbar.Container align="right">
-          {
-            tags.map(({ text, id }) =>
-              <Navbar.Item href={id} textAlign="right"> {text}
-              </Navbar.Item>)
-          }
-        </Navbar.Container>
-      </Navbar.Menu>
-    </Navbar>
-    <h1 style={headerStyles}> {props.title} </h1>
-    {props.children}
-  </main>
+  const data: TagQuery = useStaticQuery(graphql`
+    query PageTagQuery {
+      allWpPage(filter: {tagPageFields: {regex: {ne: null}}}) {
+        nodes {
+          title
+          slug
+        }
+      }
+    }
+  `)
+  return <SimpleReactLightbox key="lb">
+    <title> Will's Photo Blog - {props.title} </title>
+    <main style={pageStyles}>
+      <div className="container">
+        <Navbar style={navbarStyles} key={"navbar"}>
+          <Navbar.Brand style={brandStyles} key="brand">
+            <Navbar.Item key="mbrand" href="/">
+              Will's Photo Blog
+            </Navbar.Item>
+            <Navbar.Burger key="burg" onClick={() => setIsActive(!isActive)} />
+          </Navbar.Brand>
+          <Navbar.Menu key="menu" className={isActive ? "is-active" : ""}>
+            <Navbar.Container align="right">
+              <Navbar.Item href="https://aphoh.us"> Blog </Navbar.Item>
+              {
+                data.allWpPage.nodes.map(({ title, slug }: { title: string, slug: string }) =>
+                  <Navbar.Item href={`/t/${slug}`} textAlign="right"> {title}
+                  </Navbar.Item>)
+              }
+            </Navbar.Container>
+          </Navbar.Menu>
+        </Navbar>
+        <hr style={hrStyle} />
+        <h1 style={headerStyles} key={"title"}> {props.title} </h1>
+        {props.children}
+      </div>
+    </main>
+  </SimpleReactLightbox>
 }

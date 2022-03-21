@@ -23,18 +23,20 @@ type AlbumData = {
   }
 }
 
-export default function Album({ data }: PageProps<AlbumData>) {
-  return <Layout title={data.wpPost.title}>
+type PageContext = {
+  regex: string,
+  text: string
+}
+
+export default function Album({ data, pageContext }: PageProps<AlbumData, PageContext>) {
+  return <Layout title={pageContext.text}>
     <Gallery nodes={data.allWpMediaItem.nodes} />
   </Layout>
 }
 
 export const query = graphql`
-  query($slug: String!, $imgtag: String!) {
-    wpPost(slug: {eq: $slug}){
-      title
-    }
-    allWpMediaItem(filter: {filename: {ne: null}, tags: {nodes: {elemMatch: {name: {eq: $imgtag}}}}}) {
+  query($regex: String!) {
+    allWpMediaItem(filter: {filename: {ne: null}, caption: {regex: $regex}}) {
       nodes {
         id
         caption

@@ -45,13 +45,13 @@ type DataProps = {
 
 export const query = graphql`
 query {
-  allWpPost {
+  allWpPost(sort: {fields: date, order: DESC}) {
     nodes {
       featuredImage {
         node {
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 1280, height: 1920, placeholder: BLURRED)
+              gatsbyImageData(width: 1280, height: 1920, placeholder: BLURRED, transformOptions: {cropFocus: ENTROPY})
             }
           }
         }
